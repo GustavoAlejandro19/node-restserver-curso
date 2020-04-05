@@ -2,6 +2,9 @@
 const express = require('express');
 const app = express();
 
+//Importar mongoose
+const mongoose = require('mongoose');
+
 //Importar variables de configuración
 require('./config/config');
 
@@ -9,36 +12,16 @@ require('./config/config');
 app.use(express.json({ extended: true }));
 
 
-app.get('/usuario', (req, res) => {
+//Importar y usar rutas del usuario
+app.use(require('../routes/usuario'));
 
-    res.json('Get Usuario');
-});
+//Crear conexión a la bd
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true }, //eliminar warnings al compilar
+    (err, res) => {
 
-app.post('/usuario', (req, res) => {
+        if (err) throw err;
 
-
-    let body = req.body;
-
-    if (!body.nombre) {
-        res.status(400).json({ msg: "Error prro" });
-    }
-
-    res.json(body);
-});
-
-
-app.put('/usuario/:id', (req, res) => {
-
-    let id = req.params.id;
-
-
-    res.json({ id: id });
-});
-
-
-app.delete('/usuario', (req, res) => {
-    res.json('Delete Usuario');
-});
-
+        console.log('Conectado a BD');
+    });
 
 app.listen(process.env.PORT, () => console.log('Escuchando en puerto', process.env.PORT));
