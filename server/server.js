@@ -12,8 +12,9 @@ require('./config/config');
 app.use(express.json({ extended: true }));
 
 
-//Importar y usar rutas del usuario
-app.use(require('../routes/usuario'));
+//Importar rutas
+app.use(require('./routes/index'));
+
 
 //Crear conexión a la bd
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true }, //eliminar warnings al compilar
