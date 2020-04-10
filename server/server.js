@@ -12,8 +12,19 @@ require('./config/config');
 app.use(express.json({ extended: true }));
 
 
+//Habilitar carpeta public
+//ESTO SOLO SE HACE EN ESTE CASO PORQUE HAY UN ARCHIVO DE HTML
+//EN UN API NORMAL QUE SERVIRÁ SOLO DE BACKEND NO ES NECESARIO
+const path = require('path');
+app.use(express.static(path.resolve(__dirname, '../public')));
+
+
 //Importar rutas
 app.use(require('./routes/index'));
+
+
+
+
 
 
 //Crear conexión a la bd
