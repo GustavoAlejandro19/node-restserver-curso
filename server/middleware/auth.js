@@ -6,8 +6,6 @@ let verificarToken = (req, res, next) => {
 
     let token = req.header('Authorization');
 
-    console.log('token', token)
-
     //Esto verifica fecha, firma y regresa payload del token
     jwt.verify(token, process.env.SEED, (err, decoded) => {
 
@@ -27,9 +25,6 @@ let verificarToken = (req, res, next) => {
         next();
 
     });
-
-
-
 
 }
 
