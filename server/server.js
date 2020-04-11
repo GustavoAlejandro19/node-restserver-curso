@@ -27,6 +27,11 @@ app.use(require('./routes/index'));
 
 
 
+
+
+
+
+
 //Crear conexión a la bd
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true }, //eliminar warnings al compilar
     (err, res) => {
